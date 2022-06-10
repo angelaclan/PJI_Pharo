@@ -2,8 +2,18 @@ Class {
 	#name : #Ldr,
 	#superclass : #Sensor,
 	#instVars : [
-		'serial',
+		'timeStamp',
 		'value'
 	],
 	#category : #PJIRiotData
 }
+
+{ #category : #accessing }
+Ldr >> id [ 
+	^id
+]
+
+{ #category : #accessing }
+Ldr >> name [ 
+	^ self
+]

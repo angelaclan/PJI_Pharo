@@ -7,3 +7,14 @@ Class {
 	],
 	#category : #PJIRiotData
 }
+
+{ #category : #accessing }
+Measure >> timeStamp [
+
+	^ DateAndTime now
+]
+
+{ #category : #accessing }
+Measure >> value [ 
+	^ value
+]
