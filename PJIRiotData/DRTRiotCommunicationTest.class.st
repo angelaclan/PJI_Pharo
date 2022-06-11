@@ -1,11 +1,11 @@
 Class {
-	#name : #RiotProjectTest,
+	#name : #DRTRiotCommunicationTest,
 	#superclass : #TestCase,
-	#category : #PJIRiotData
+	#category : #'PJIRiotData-Tests'
 }
 
 { #category : #test }
-RiotProjectTest >> testMessageReceivedFromEsp8266 [
+DRTRiotCommunicationTest >> testMessageReceivedFromEsp8266 [
 
 "creat socket, bind port and address, receive datagram, store into buffer"
 
@@ -19,7 +19,7 @@ result := socket receiveUDPDataInto: buffer.
 ]
 
 { #category : #test }
-RiotProjectTest >> testRestructDataReceivedFromEsp8266 [
+DRTRiotCommunicationTest >> testRestructDataReceivedFromEsp8266 [
 
 "creat socket, bind port, receive datagram, and restruct it "
 
