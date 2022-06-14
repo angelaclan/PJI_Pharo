@@ -19,6 +19,8 @@ DRTBoardContainer class >> default [
 { #category : #'instance creation' }
 DRTBoardContainer >> findBoardById: anId [
 
+	anId ifNil: [ self error: 'Board id is nil' ].
+
 	^ boards detect: [ :each | each id = anId ]
 ]
 

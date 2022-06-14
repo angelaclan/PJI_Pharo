@@ -93,3 +93,8 @@ DRTNetworkConsumingService >> stepService [
 		on: ConnectionTimedOut
 		do: [ :ct | self manageConnectionTimeout: ct ]
 ]
+
+{ #category : #accessing }
+DRTNetworkConsumingService >> stream: aReadStream [ 
+	stream := aReadStream
+]
