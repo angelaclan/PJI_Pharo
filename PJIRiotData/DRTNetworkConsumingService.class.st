@@ -66,6 +66,7 @@ DRTNetworkConsumingService >> port: anInteger [
 
 { #category : #'as yet unclassified' }
 DRTNetworkConsumingService >> processNextPackage [
+   " string format example : '{\""board\"":1,\""%s\"":%d};' "
 
 	| currentRead package board allSensorNames |
 	currentRead := stream upToAll: self breakingLine.
