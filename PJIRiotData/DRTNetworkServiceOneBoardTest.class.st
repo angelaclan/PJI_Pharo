@@ -1,5 +1,5 @@
 Class {
-	#name : #DRTNetworkServiceTest,
+	#name : #DRTNetworkServiceOneBoardTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'service',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #tests }
-DRTNetworkServiceTest >> setUp [
+DRTNetworkServiceOneBoardTest >> setUp [
 
 	super setUp.
 	bd := DRTBoardContainer new.
@@ -22,22 +22,17 @@ DRTNetworkServiceTest >> setUp [
 ]
 
 { #category : #tests }
-DRTNetworkServiceTest >> testBoardMismatchSensorValue20 [
+DRTNetworkServiceOneBoardTest >> testBoardMismatchSensorValue20 [
 
 	| stream |
-	stream :='{"board":null,"photoresistor":20};' readStream.
+	stream := '{"board":null,"photoresistor":20};' readStream.
 	service stream: stream.
-	self
-		assert: 
-		((bd findBoardById: nil) findSensorByName: #photoresistor) measures
-			size
-		equals: 0.
-	service stepService.
-	
+	self assert: (bd findBoardById: nil) service stepService.
+	self assert: (bd findBoardById: nil)
 ]
 
 { #category : #tests }
-DRTNetworkServiceTest >> testBoardNo1SensorValue20 [
+DRTNetworkServiceOneBoardTest >> testBoardNo1SensorValue20 [
 
 	| stream |
 	stream :='{"board":1,"photoresistor":20};' readStream.
@@ -61,7 +56,7 @@ DRTNetworkServiceTest >> testBoardNo1SensorValue20 [
 ]
 
 { #category : #tests }
-DRTNetworkServiceTest >> testBoardNo1SensorValueNil [
+DRTNetworkServiceOneBoardTest >> testBoardNo1SensorValueNil [
 
 	| stream |
 	stream :='{"board":1,"photoresistor":null};' readStream.
