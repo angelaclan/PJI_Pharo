@@ -6,9 +6,3 @@ Class {
 	],
 	#category : #'PJIRiotData-Model'
 }
-
-{ #category : #accessing }
-DRTPhotoResistor >> initialize [ 
-	super initialize.
-	^ 'ohms'
-]

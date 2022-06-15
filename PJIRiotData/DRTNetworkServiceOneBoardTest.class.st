@@ -13,7 +13,7 @@ DRTNetworkServiceOneBoardTest >> setUp [
 
 	super setUp.
 	bd := DRTBoardContainer new.
-	(bd newBoardId: 1) addSensor: (DRTPhotoResistor new
+	(bd newBoardId: 1) addSensor: (DRTPhotoResistor new 
 			 name: 'photoresistor';
 			 yourself).
 
