@@ -54,6 +54,5 @@ DRTSensor >> registerMeasure: anInteger [
 { #category : #accessing }
 DRTSensor >> unit [
 
-
-	^ #ohms
+	^ self unit
 ]

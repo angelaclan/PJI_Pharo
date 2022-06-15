@@ -6,3 +6,9 @@ Class {
 	],
 	#category : #'PJIRiotData-Model'
 }
+
+{ #category : #accessing }
+DRTPhotoResistor >> unit [
+
+	^ 'ohms'
+]

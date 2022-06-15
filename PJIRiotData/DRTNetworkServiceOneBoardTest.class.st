@@ -59,7 +59,7 @@ DRTNetworkServiceOneBoardTest >> testBoardNo1SensorValue20 [
 DRTNetworkServiceOneBoardTest >> testBoardNo1SensorValueNil [
 
 	| stream |
-	stream :='{"board":1,"photoresistor":null};' readStream.
+	stream := '{"board":1,"photoresistor":null};' readStream.
 	service stream: stream.
 	self
 		assert:
