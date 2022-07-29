@@ -19,6 +19,12 @@ DRTNetworkConsumingService class >> onPort: aPort boardContainer: aBoardContaine
 		  yourself
 ]
 
+{ #category : #registration }
+DRTNetworkConsumingService class >> stopAll [
+
+	^ self allInstancesDo: #stop
+]
+
 { #category : #accessing }
 DRTNetworkConsumingService >> boards: aDRTBoardContainer [ 
 	boards := aDRTBoardContainer
