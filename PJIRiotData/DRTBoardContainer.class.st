@@ -13,7 +13,18 @@ Class {
 { #category : #accessing }
 DRTBoardContainer class >> default [
 
-	^ default ifNil: [ default := self new ]
+	^ default ifNil: [ 
+		  default := self new.
+		  (default newBoardId: 1) addSensor: (DRTPhotoResistor new
+				   name: 'PhotoResistor';
+				   yourself).
+		  default ]
+]
+
+{ #category : #accessing }
+DRTBoardContainer >> boards [
+
+	^ boards asOrderedCollection
 ]
 
 { #category : #'instance creation' }
