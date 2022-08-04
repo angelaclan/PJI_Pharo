@@ -1,5 +1,5 @@
 Class {
-	#name : #DRTNetworkConsumingService2,
+	#name : #DRTNetworkConsumingService,
 	#superclass : #TKTService,
 	#instVars : [
 		'boards',
@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-DRTNetworkConsumingService2 class >> onPort: aPort boardContainer: aBoardContainer [
+DRTNetworkConsumingService class >> onPort: aPort boardContainer: aBoardContainer [
 
 	^ self new
 		  port: aPort;
@@ -23,7 +23,7 @@ DRTNetworkConsumingService2 class >> onPort: aPort boardContainer: aBoardContain
 ]
 
 { #category : #'as yet unclassified' }
-DRTNetworkConsumingService2 class >> startDefault [
+DRTNetworkConsumingService class >> startDefault [
 
 	default ifNil: [ 
 		default := self
@@ -38,31 +38,31 @@ DRTNetworkConsumingService2 class >> startDefault [
 ]
 
 { #category : #registration }
-DRTNetworkConsumingService2 class >> stopAll [
+DRTNetworkConsumingService class >> stopAll [
 
 	^ self allInstancesDo: #stop
 ]
 
 { #category : #accessing }
-DRTNetworkConsumingService2 >> boards: aDRTBoardContainer [ 
+DRTNetworkConsumingService >> boards: aDRTBoardContainer [ 
 	boards := aDRTBoardContainer
 ]
 
 { #category : #stepping }
-DRTNetworkConsumingService2 >> breakingLine [
+DRTNetworkConsumingService >> breakingLine [
 
 	^ ';'
 ]
 
 { #category : #initialization }
-DRTNetworkConsumingService2 >> initialize [
+DRTNetworkConsumingService >> initialize [
 
 	super initialize.
 	boards := OrderedCollection new
 ]
 
 { #category : #stepping }
-DRTNetworkConsumingService2 >> manageConnectionTimeout: aConnectionTimeout [
+DRTNetworkConsumingService >> manageConnectionTimeout: aConnectionTimeout [
 	( '{1} {2} {3}' format: { 
 			DateAndTime now asString. 
 			self name . 
@@ -72,24 +72,24 @@ DRTNetworkConsumingService2 >> manageConnectionTimeout: aConnectionTimeout [
 ]
 
 { #category : #accessing }
-DRTNetworkConsumingService2 >> name [
+DRTNetworkConsumingService >> name [
 
 	^ 'DRT Consuming Service (Port: {1})' format: { port }
 ]
 
 { #category : #accessing }
-DRTNetworkConsumingService2 >> port [
+DRTNetworkConsumingService >> port [
 
 	^ port
 ]
 
 { #category : #accessing }
-DRTNetworkConsumingService2 >> port: anInteger [ 
+DRTNetworkConsumingService >> port: anInteger [ 
 	port := anInteger
 ]
 
 { #category : #'as yet unclassified' }
-DRTNetworkConsumingService2 >> processNextPackage [
+DRTNetworkConsumingService >> processNextPackage [
    " string format example : '{\""board\"":1,\""%s\"":%d};' "
 
 	| currentRead package board allSensorNames |
@@ -103,7 +103,7 @@ DRTNetworkConsumingService2 >> processNextPackage [
 ]
 
 { #category : #stepping }
-DRTNetworkConsumingService2 >> setUp [
+DRTNetworkConsumingService >> setUp [
 
 	socket := Socket newUDP.
 	socket setPort: self port.
@@ -111,7 +111,7 @@ DRTNetworkConsumingService2 >> setUp [
 ]
 
 { #category : #stepping }
-DRTNetworkConsumingService2 >> stepService [
+DRTNetworkConsumingService >> stepService [
 
 	[ self processNextPackage ]
 		on: ConnectionTimedOut
@@ -119,6 +119,6 @@ DRTNetworkConsumingService2 >> stepService [
 ]
 
 { #category : #accessing }
-DRTNetworkConsumingService2 >> stream: aReadStream [ 
+DRTNetworkConsumingService >> stream: aReadStream [ 
 	stream := aReadStream
 ]
