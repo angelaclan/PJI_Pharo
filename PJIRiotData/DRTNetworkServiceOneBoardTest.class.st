@@ -18,7 +18,7 @@ DRTNetworkServiceOneBoardTest >> setUp [
 			 yourself).
 
 
-	service := DRTNetworkConsumingService new boards: bd
+	service := DRTNetworkConsumingService2 new boards: bd
 ]
 
 { #category : #tests }

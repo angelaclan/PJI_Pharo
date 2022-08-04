@@ -56,5 +56,5 @@ PWSChuick >> setUpBoards [
 	boardsList items: bd boards.
 	
 	" We call this for starting the service if required. "
-	DRTNetworkConsumingService startDefault.
+	DRTNetworkConsumingService2 startDefault.
 ]
