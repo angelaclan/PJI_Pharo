@@ -5,7 +5,8 @@ Class {
 		'label',
 		'bd',
 		'boardsList',
-		'sensorList'
+		'sensorList',
+		'valueList'
 	],
 	#category : #PlaywithSpec
 }
@@ -14,7 +15,10 @@ Class {
 PWSChuick >> connectPresenters [
 
 	boardsList whenSelectionChangedDo: [ :selection | 
-		sensorList items: selection selectedItem sensors asOrderedCollection ]
+		sensorList items: selection selectedItem sensors asOrderedCollection ].
+
+	sensorList whenSelectionChangedDo: [ :selection | 
+		valueList items: selection selectedItem measures ]
 ]
 
 { #category : #initialization }
@@ -26,9 +30,13 @@ PWSChuick >> defaultLayout [
 						    add: 'Board' expand: false;
 						    add: boardsList;
 						    yourself);
-				  add: (SpBoxLayout newTopToBottom
+				   add: (SpBoxLayout newTopToBottom
 						    add: 'Sensor' expand: false;
 						    add: sensorList;
+						    yourself); 
+				   add: (SpBoxLayout newTopToBottom
+						    add: 'Value' expand: false;
+						    add: valueList;
 						    yourself); 
 				   yourself);
 		 
@@ -45,6 +53,7 @@ PWSChuick >> initializePresenters [
 
 	sensorList := self newList display: [ :sensor | sensor name ].
 	
+	valueList := self newList.
 	self setUpBoards
 ]
 
