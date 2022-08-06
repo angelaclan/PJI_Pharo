@@ -25,16 +25,22 @@ DRTNetworkConsumingService class >> onPort: aPort boardContainer: aBoardContaine
 { #category : #'as yet unclassified' }
 DRTNetworkConsumingService class >> startDefault [
 
-	default ifNil: [ 
-		default := self
-			           onPort: 8809
-			           boardContainer: DRTBoardContainer default.
-		[ default start ]
-			on: Error
-			do: [ 
-				self stopAll.
-				default start ].
-		default ]
+	default ifNotNil: [ 
+		default stop.
+		default := nil ].
+
+
+	default := self
+		           onPort: 8809
+		           boardContainer: DRTBoardContainer default.
+
+	[ default start ]
+		on: Error
+		do: [ 
+			self stopAll.
+			default start ].
+	default
+	
 ]
 
 { #category : #registration }

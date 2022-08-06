@@ -18,6 +18,9 @@ DRTBoardContainer class >> default [
 		  (default newBoardId: 1) addSensor: (DRTPhotoResistor new
 				   name: 'PhotoResistor';
 				   yourself).
+		  (default newBoardId: 2) addSensor: (DRTPhotoResistor new
+				   name: 'PhotoResistor';
+				   yourself).
 		  default ]
 ]
 
