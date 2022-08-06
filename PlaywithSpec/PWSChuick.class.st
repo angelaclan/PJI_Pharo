@@ -15,10 +15,16 @@ Class {
 PWSChuick >> connectPresenters [
 
 	boardsList whenSelectionChangedDo: [ :selection | 
-		sensorList items: selection selectedItem sensors asOrderedCollection ].
+		selection selectedItem
+			ifNil: [ sensorList items: {  } ]
+			ifNotNil: [ 
+				sensorList items:
+					selection selectedItem sensors asOrderedCollection ] ].
 
 	sensorList whenSelectionChangedDo: [ :selection | 
-		valueList items: selection selectedItem measures ]
+		selection selectedItem
+			ifNil: [ valueList items: {  } ]
+			ifNotNil: [ valueList items: selection selectedItem measures ] ]
 ]
 
 { #category : #initialization }

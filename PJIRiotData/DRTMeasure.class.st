@@ -32,6 +32,12 @@ DRTMeasure >> timestamp: anObject [
 ]
 
 { #category : #accessing }
+DRTMeasure >> unit [
+
+	^ unit ifNil: [ '' ]
+]
+
+{ #category : #accessing }
 DRTMeasure >> value [
 
 	value ifNil: [self error: 'Value id is nil' ].
