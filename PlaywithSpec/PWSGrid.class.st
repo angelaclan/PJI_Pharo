@@ -20,9 +20,7 @@ PWSGrid >> defaultLayout [
 { #category : #layout }
 PWSGrid >> initialize [
 
-	selectedClasses := OrderedCollection
-		                   with: ASTCache
-		                   with: ASTEvaluationTest.
+	selectedClasses := {1. 2. 3}.
 	super initialize
 ]
 
@@ -35,27 +33,14 @@ PWSGrid >> initializePresenters [
 	self resetLabel.
 
 	table1
-		addColumn: (SpStringTableColumn title: 'Object' evaluated: [ :each | each self object asString ]);
-		addColumn: (SpStringTableColumn title: 'Board' evaluated: #board);
-		addColumn: (SpStringTableColumn title: 'Sensor' evaluated: #sensor);
 		addColumn: (SpStringTableColumn
-				 title: 'Value'
-				 evaluated: [ :class | class subclasses size asString ]);
-		
-		beResizable
-]
-
-{ #category : #layout }
-PWSGrid >> object [
-
-	^ { 'monaliso'. 'pis'. 'ushuaia' }
+				 title: 'Number of subclasses'
+				 evaluated: [ :each | each asString ]);
+		items: { 1. 2. 3 };
+		"items: self class environment allClasses;"beResizable
 ]
 
 { #category : #layout }
 PWSGrid >> resetLabel [
-
-	label label: (selectedClasses
-			 ifEmpty: [ 'No class checked' ]
-			 ifNotEmpty: [ 
-			 (selectedClasses collect: #printString) joinUsing: ' - ' ])
+	label label: (selectedClasses ifEmpty: [ 'No class checked' ] ifNotEmpty: [ (selectedClasses collect: #printString) joinUsing: ' - '])
 ]
