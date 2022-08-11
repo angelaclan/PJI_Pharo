@@ -4,7 +4,9 @@ Class {
 	#instVars : [
 		'table1',
 		'label',
-		'selectedClasses'
+		'selectedClasses',
+		'bd',
+		'boardsList'
 	],
 	#category : #PlaywithSpec
 }
@@ -34,13 +36,40 @@ PWSGrid >> initializePresenters [
 
 	table1
 		addColumn: (SpStringTableColumn
-				 title: 'Number of subclasses'
+				 title: 'Article'
 				 evaluated: [ :each | each asString ]);
 		items: { 1. 2. 3 };
-		"items: self class environment allClasses;"beResizable
+		
+		addColumn: (SpStringTableColumn
+				 title: 'Board'
+				 evaluated: [ :each | each asString ]);
+		items: bd boards;
+		
+		addColumn: (SpStringTableColumn
+				 title: 'Sensor'
+				 evaluated: [ :each | each asString ]);
+		items: (self newList display: [ :sensor | sensor name ]) ;
+		
+		addColumn: (SpStringTableColumn
+				 title: 'Value'
+				 evaluated: [ :each | each asString ]);
+		items: self newList ;
+		beResizable.
+	self setUpBoard
 ]
 
 { #category : #layout }
 PWSGrid >> resetLabel [
 	label label: (selectedClasses ifEmpty: [ 'No class checked' ] ifNotEmpty: [ (selectedClasses collect: #printString) joinUsing: ' - '])
+]
+
+{ #category : #initialization }
+PWSGrid >> setUpBoard [
+
+	bd := DRTBoardContainer default.
+
+	boardsList items: bd boards.
+	
+	" We call this for starting the service if required. "
+	DRTNetworkConsumingService startDefault.
 ]

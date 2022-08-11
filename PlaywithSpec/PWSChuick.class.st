@@ -12,12 +12,6 @@ Class {
 }
 
 { #category : #initialization }
-PWSChuick >> boardsList [
-
-	^ boardsList
-]
-
-{ #category : #initialization }
 PWSChuick >> connectPresenters [
 
 	boardsList whenSelectionChangedDo: [ :selection | 
