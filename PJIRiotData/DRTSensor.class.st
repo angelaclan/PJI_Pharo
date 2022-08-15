@@ -14,6 +14,12 @@ DRTSensor >> id [
 	^id
 ]
 
+{ #category : #accessing }
+DRTSensor >> lastMeasure [
+
+	^ measures last
+]
+
 { #category : #'as yet unclassified' }
 DRTSensor >> measures [
 

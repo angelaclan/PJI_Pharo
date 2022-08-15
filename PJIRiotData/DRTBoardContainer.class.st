@@ -12,7 +12,7 @@ Class {
 
 { #category : #accessing }
 DRTBoardContainer class >> default [
-
+	" The building of the default board container should be consistent with the C program for the boards "
 	^ default ifNil: [ 
 		  default := self new.
 		  (default newBoardId: 1) addSensor: (DRTPhotoResistor new

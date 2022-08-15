@@ -2,11 +2,8 @@ Class {
 	#name : #PWSGrid,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'table1',
-		'label',
-		'selectedClasses',
-		'bd',
-		'boardsList'
+		'table',
+		'grid'
 	],
 	#category : #'PJIRiotData-UI'
 }
@@ -14,62 +11,32 @@ Class {
 { #category : #layout }
 PWSGrid >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
-		add: table1;
-		add: label expand: false;
+		add: table;
 		yourself
 ]
 
-{ #category : #layout }
-PWSGrid >> initialize [
+{ #category : #accessing }
+PWSGrid >> grid [
+	^ grid
+]
 
-	selectedClasses := {1. 2. 3}.
-	super initialize
+{ #category : #layout }
+PWSGrid >> grid: aGrid [
+
+	grid := aGrid.
+	1 to: grid cellsPerRow do: [ :index | 
+		table addColumn: (SpTextInputTableColumn
+				 title: 'Column' , index asString
+				 evaluated: [ :each | (each getCell: index) contents ]
+				 stored: [ :each :newValue | 
+				 (each getCell: index) contents: newValue ]) ].
+	table items: grid rows
 ]
 
 { #category : #layout }
 PWSGrid >> initializePresenters [
 
-	table1 := self newTable.
-	label := self newLabel.
+	table := self newTable.
 
-	self resetLabel.
-
-	table1
-		addColumn: (SpStringTableColumn
-				 title: 'Article'
-				 evaluated: [ :each | each asString ]);
-		items: { 1. 2. 3 };
-		
-		addColumn: (SpStringTableColumn
-				 title: 'Board'
-				 evaluated: [ :each | each asString ]);
-		items: bd boards;
-		
-		addColumn: (SpStringTableColumn
-				 title: 'Sensor'
-				 evaluated: [ :each | each asString ]);
-		items: (self newList display: [ :sensor | sensor name ]) ;
-		
-		addColumn: (SpStringTableColumn
-				 title: 'Value'
-				 evaluated: [ :each | each asString ]);
-		items: self newList ;
-		beResizable.
-	self setUpBoard
-]
-
-{ #category : #layout }
-PWSGrid >> resetLabel [
-	label label: (selectedClasses ifEmpty: [ 'No class checked' ] ifNotEmpty: [ (selectedClasses collect: #printString) joinUsing: ' - '])
-]
-
-{ #category : #initialization }
-PWSGrid >> setUpBoard [
-
-	bd := DRTBoardContainer default.
-
-	boardsList items: bd boards.
 	
-	" We call this for starting the service if required. "
-	DRTNetworkConsumingService startDefault.
 ]
