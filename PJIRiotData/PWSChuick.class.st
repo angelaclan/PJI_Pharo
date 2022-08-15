@@ -8,7 +8,7 @@ Class {
 		'sensorList',
 		'valueList'
 	],
-	#category : #PlaywithSpec
+	#category : #'PJIRiotData-UI'
 }
 
 { #category : #initialization }

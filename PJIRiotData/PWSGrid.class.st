@@ -8,7 +8,7 @@ Class {
 		'bd',
 		'boardsList'
 	],
-	#category : #PlaywithSpec
+	#category : #'PJIRiotData-UI'
 }
 
 { #category : #layout }
