@@ -40,7 +40,7 @@ DRTMeasure >> unit [
 { #category : #accessing }
 DRTMeasure >> value [
 
-	value ifNil: [self error: 'Value id is nil' ].
+	value ifNil: [self error: 'Value is nil' ].
 	^ value.
 ]
 

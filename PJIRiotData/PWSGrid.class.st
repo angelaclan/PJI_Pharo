@@ -10,9 +10,10 @@ Class {
 
 { #category : #layout }
 PWSGrid >> defaultLayout [
+
 	^ SpBoxLayout newTopToBottom
-		add: table;
-		yourself
+		  add: table;
+		  yourself
 ]
 
 { #category : #accessing }
@@ -26,7 +27,7 @@ PWSGrid >> grid: aGrid [
 	grid := aGrid.
 	1 to: grid cellsPerRow do: [ :index | 
 		table addColumn: (SpTextInputTableColumn
-				 title: 'Column' , index asString
+				 title: (index + 9) asHexDigit asString
 				 evaluated: [ :each | (each getCell: index) contents ]
 				 stored: [ :each :newValue | 
 				 (each getCell: index) contents: newValue ]) ].
@@ -37,6 +38,8 @@ PWSGrid >> grid: aGrid [
 PWSGrid >> initializePresenters [
 
 	table := self newTable.
-
-	
+	table addColumn: (SpIndexTableColumn new
+			 title: '#';
+			 beNotExpandable;
+			 yourself)
 ]

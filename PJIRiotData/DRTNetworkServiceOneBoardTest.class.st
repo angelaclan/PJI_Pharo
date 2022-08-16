@@ -25,10 +25,9 @@ DRTNetworkServiceOneBoardTest >> setUp [
 DRTNetworkServiceOneBoardTest >> testBoardMismatchSensorValue20 [
 
 	| stream |
-	stream := '{"board":null,"photoresistor":20};' readStream.
+	stream := '{"board":1,"Photoresistor":20};' readStream.
 	service stream: stream.
-	self assert: (bd findBoardById: nil) service stepService.
-	self assert: (bd findBoardById: nil)
+	self should: [ service stepService ] raise: Error
 ]
 
 { #category : #tests }
@@ -70,12 +69,6 @@ DRTNetworkServiceOneBoardTest >> testBoardNo1SensorValueNil [
 	self
 		assert:
 			((bd findBoardById: 1) findSensorByName: #photoresistor) measures
-				last value
-		equals: nil.
-	self
-		assert:
-		((bd findBoardById: 1) findSensorByName: #photoresistor) measures
-			size
-		equals: 1.
-	
+				size
+		equals: 0
 ]

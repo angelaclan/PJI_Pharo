@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'grid'
 	],
-	#category : #'PJIRiotData-Grid'
+	#category : #'PJIRiotData-Tests'
 }
 
 { #category : #tests }

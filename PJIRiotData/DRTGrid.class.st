@@ -8,6 +8,12 @@ Class {
 	#category : #'PJIRiotData-Grid'
 }
 
+{ #category : #'instance creation' }
+DRTGrid class >> open: aString [
+
+	^ STON fromStream: aString asFileReference readStream
+]
+
 { #category : #adding }
 DRTGrid >> addNewRow [
 
@@ -19,13 +25,13 @@ DRTGrid >> addNewRow [
 { #category : #'as yet unclassified' }
 DRTGrid >> cellsPerRow [
 
-	^ cellsPerRow ifNil: [ cellsPerRow := 5 ]
+	^ cellsPerRow ifNil: [ cellsPerRow := 6]
 ]
 
 { #category : #'as yet unclassified' }
 DRTGrid >> defaultRowAmount [
 
-	^ 3
+	^ 15
 ]
 
 { #category : #initialization }
@@ -41,4 +47,15 @@ DRTGrid >> rows [
 	^ rows ifNil: [ 
 		  self initializeDefaultRows.
 		  rows ]
+]
+
+{ #category : #saving }
+DRTGrid >> saveAs: aString [
+
+	| stream |
+	stream := aString asFileReference writeStream.
+	STON put: self onStream: stream.
+	stream
+		flush;
+		close
 ]

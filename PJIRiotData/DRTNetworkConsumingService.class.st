@@ -99,6 +99,7 @@ DRTNetworkConsumingService >> processNextPackage [
    " string format example : '{\""board\"":1,\""%s\"":%d};' "
 
 	| currentRead package board allSensorNames |
+
 	currentRead := stream upToAll: self breakingLine.
 	package := STONJSON fromStream: currentRead readStream.
 	board := boards findBoardById: (package at: #board).
