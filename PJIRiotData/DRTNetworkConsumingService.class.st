@@ -5,13 +5,21 @@ Class {
 		'boards',
 		'port',
 		'socket',
-		'stream'
+		'stream',
+		'times'
 	],
 	#classInstVars : [
-		'default'
+		'default',
+		'interested'
 	],
 	#category : #'PJIRiotData-Network'
 }
+
+{ #category : #registration }
+DRTNetworkConsumingService class >> interested [
+
+	^ interested ifNil: [ interested := Set new ]
+]
 
 { #category : #'as yet unclassified' }
 DRTNetworkConsumingService class >> onPort: aPort boardContainer: aBoardContainer [
@@ -64,6 +72,8 @@ DRTNetworkConsumingService >> breakingLine [
 DRTNetworkConsumingService >> initialize [
 
 	super initialize.
+	self stepDelay: 10 milliSeconds.
+
 	boards := OrderedCollection new
 ]
 
@@ -120,7 +130,12 @@ DRTNetworkConsumingService >> setUp [
 { #category : #stepping }
 DRTNetworkConsumingService >> stepService [
 
-	[ self processNextPackage ]
+	[ 
+	self processNextPackage.
+	self times: self times + 1.
+	self times > 10 ifTrue: [ 
+		self times: 0.
+		self class interested do: #refresh ] ]
 		on: ConnectionTimedOut
 		do: [ :ct | self manageConnectionTimeout: ct ]
 ]
@@ -128,4 +143,15 @@ DRTNetworkConsumingService >> stepService [
 { #category : #accessing }
 DRTNetworkConsumingService >> stream: aReadStream [ 
 	stream := aReadStream
+]
+
+{ #category : #stepping }
+DRTNetworkConsumingService >> times [
+
+	^ times ifNil: [ times := 0 ]
+]
+
+{ #category : #stepping }
+DRTNetworkConsumingService >> times: int [
+	times := int. 
 ]

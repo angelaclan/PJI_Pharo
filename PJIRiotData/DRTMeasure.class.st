@@ -13,10 +13,16 @@ Class {
 DRTMeasure >> printOn: aStream [
 
 	aStream
-		print: self timestamp;
+		print: value;
 		nextPutAll: self unit;
 		nextPutAll: ' ';
-		print: value
+		nextPutAll: '(';
+		print: self timestamp hour;
+		nextPutAll: 'h';
+		print: self timestamp minutes;
+		nextPutAll: 'm';
+		print: self timestamp seconds;
+		nextPutAll: 's)'
 ]
 
 { #category : #accessing }
@@ -34,7 +40,7 @@ DRTMeasure >> timestamp: anObject [
 { #category : #accessing }
 DRTMeasure >> unit [
 
-	^ unit ifNil: [ '' ]
+	^ unit ifNil: [ 'l' ]
 ]
 
 { #category : #accessing }

@@ -20,6 +20,12 @@ DRTRow >> cells [
 ]
 
 { #category : #'as yet unclassified' }
+DRTRow >> deleteContent [
+
+	cells do: #deleteContent
+]
+
+{ #category : #'as yet unclassified' }
 DRTRow >> getCell: anInteger [
 
 	^ cells at: anInteger

@@ -21,6 +21,12 @@ DRTCell >> contents: aString [
 		ifFalse: [ self holdr contents: aString ]
 ]
 
+{ #category : #'as yet unclassified' }
+DRTCell >> deleteContent [
+
+	holdr := DRTStringValueHolder new
+]
+
 { #category : #accessing }
 DRTCell >> holdr [
 

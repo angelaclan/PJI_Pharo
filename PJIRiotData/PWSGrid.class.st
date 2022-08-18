@@ -37,9 +37,19 @@ PWSGrid >> grid: aGrid [
 { #category : #layout }
 PWSGrid >> initializePresenters [
 
+	DRTNetworkConsumingService interested add: self.
+	self withWindowDo: [ :w | 
+		w whenClosedDo: [ 
+			DRTNetworkConsumingService interested remove: self ifAbsent: [  ] ] ].
 	table := self newTable.
 	table addColumn: (SpIndexTableColumn new
 			 title: '#';
 			 beNotExpandable;
 			 yourself)
+]
+
+{ #category : #layout }
+PWSGrid >> refresh [
+
+	grid ifNotNil: [ table items: grid rows ]
 ]
