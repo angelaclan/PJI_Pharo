@@ -12,7 +12,7 @@ DRTChartExample >> exampleChartLight [
 	plottingBoard := DRTBoardContainer default findBoardById: 2.
 	plottingMeasures := plottingBoard sensors anyOne measures copy.
 	names := plottingMeasures withIndexCollect: [ :m :i | 
-		         i \\ 50 = 0
+		         i \\ 150 = 0
 			         ifTrue: [ 
 				         String streamContents: [ :str | 
 					         BasicDatePrinter default
@@ -46,7 +46,7 @@ DRTChartExample >> exampleChartLight: anBoardNumber [
 	plottingBoard := DRTBoardContainer default findBoardById: anBoardNumber.
 	plottingMeasures := plottingBoard sensors anyOne measures copy.
 	names := plottingMeasures withIndexCollect: [ :m :i | 
-		         i \\ 50 = 0
+		         i \\ 150 = 0
 			         ifTrue: [ 
 				         String streamContents: [ :str | 
 					         BasicDatePrinter default
